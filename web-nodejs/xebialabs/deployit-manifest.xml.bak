@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="web-ui">
     <deployables>
-       <openshift.ResourcesFile name="deploymentconfig-web-ui" file="./work/deploymentconfig-web-ui.yaml"/> <openshift.ResourcesFile name="service-web-ui" file="./work/service-web-ui.yaml"/> <openshift.ResourcesFile name="route-web-ui" file="./work/route-web-ui.yaml"/>       
-    </deployables></udm.DeploymentPackage>
+        <openshift.ResourcesFile name="deploymentconfig-web-ui" file="./work/deploymentconfig-web-ui.yaml"/>
+        <openshift.ResourcesFile name="service-web-ui" file="./work/service-web-ui.yaml"/>
+        <openshift.ResourcesFile name="route-web-ui" file="./work/route-web-ui.yaml"/>
+    </deployables>
+</udm.DeploymentPackage>
     
