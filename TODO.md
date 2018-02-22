@@ -86,8 +86,18 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
     * Verify Certificates: False
 * Create the `openshift.Project` Infrastructure/openshift.server/coolstore-qa
 * Create the `openshift.Project` Infrastructure/openshift.server/coolstore-prod
-* Create an `udm.Dictionary` global.configuration with the following properties
+* Create an `udm.Dictionary` Environments/global.configuration with the following properties
     * REGISTRY 172.30.1.1:5000
+* Create an `udm.Dictionary` qa.configuration with the following properties
+    * CATALOG_DB_USERNAME scott
+    * CATALOG_DB_PASSWORD tiger
+    * MONGODB_ADMIN_PASSWORD tiger
+    * catalog.initialDelaySeconds 60
+    * catalog.timeoutSeconds 30
+    * catalog.periodSeconds 30
+    * env qa
+    
+
 * Create the QA `udm.Environment` with Infrastructure/openshift.server/coolstore-qa as member and Environments/global.configuration as dictionaries
 * Create the PROD `udm.Environment` Environment with Infrastructure/openshift.server/coolstore-prod as member Environments/global.configuration as dictionaries
 
