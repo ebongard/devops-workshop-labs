@@ -50,7 +50,9 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
 ### Openshift ###
 
 * create the coolstore-qa project `oc new-project coolstore-qa`
+* create the role-binding `oc apply -f xebialabs/role-binding.yaml` (not supported by xld-k8s-plugin-7.6.0.xldp), it allows the gateway to look up services in the current project.
 * create the coolstore-prod project `oc new-project coolstore-prod`
+* create the role-binding `oc apply -f xebialabs/role-binding.yaml` (not supported by xld-k8s-plugin-7.6.0.xldp), it allows the gateway to look up services in the current project.
 * grant policy for coolstore-qa to fetch image from dev `oc policy add-role-to-user system:image-puller system:serviceaccount:coolstore-qa:default -n coolstore-dev`
 * grant policy for coolstore-prod to fetch image from dev `oc policy add-role-to-user system:image-puller system:serviceaccount:coolstore-prod:default -n coolstore-dev`
 
@@ -82,7 +84,7 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
 * Create the `openshift.Server`
     * id : Infrastructure/openshift.server
     * server Url : https://kubernetes.default.svc:443
-    * token: xxxxx xxxx
+    * token: xxxxx xxxx (the `oc whoami -t` returns the token)
     * Verify Certificates: False
 * Create the `openshift.Project` Infrastructure/openshift.server/coolstore-qa
 * Create the `openshift.Project` Infrastructure/openshift.server/coolstore-prod
