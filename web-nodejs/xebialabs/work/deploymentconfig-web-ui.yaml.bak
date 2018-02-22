@@ -29,6 +29,8 @@ spec:
           value: gw-coolstore-{{env}}
         - name: HOSTNAME_HTTP
           value: web-ui:8080
+        - name: COMPONENT_VERSION
+          value: @APP_VERSION@
         image: {{REGISTRY}}/coolstore-dev/web-ui:@APP_VERSION@
         imagePullPolicy: Always
         livenessProbe:
