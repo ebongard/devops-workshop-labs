@@ -1,4 +1,4 @@
-INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('329299', 'Benoit Red Fedora', 'Official Red Hat Fedora', 34.99);
+INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('329299', 'Red Fedora', 'Official Red Hat Fedora by XebiaLabs', 34.99);
 INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('329199', 'Forge Laptop Sticker', 'JBoss Community Forge Project Sticker', 8.50);
 INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('165613', 'Solid Performance Polo', 'Moisture-wicking, antimicrobial 100% polyester design wicks for life of garment. No-curl, rib-knit collar...', 17.80)
 INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('165614', 'Ogio Caliber Polo', 'Moisture-wicking 100% polyester. Rib-knit collar and cuffs; Ogio jacquard tape insitem_ide neck; bar-tacked three-button placket with...', 28.75)
