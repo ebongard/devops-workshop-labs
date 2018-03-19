@@ -8,7 +8,6 @@
 * start CDK using virtualbox driver ` minishift start --vm-driver=virtualbox`
 
     
-
 ## Setup the sample app ##
 * `oc login -u developer` 
 * `oc new-project coolstore-dev`
