@@ -77,6 +77,8 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
     * don't forget to set the `Run automated tasks as user` 's credentials)
     * edit the xldeploy task to set the `XLDeploy Server` 
     * xebialabs/ComponentTemplate.xlr
+    * xebialabs/GlobalRelease.xlr
+    * xebialabs/Master.xlr
  
     
 ### XLDeploy ###
