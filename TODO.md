@@ -28,7 +28,7 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
         * set your openshiftToken `oc whoami -t`
         * validate by running the `check connection` control task 
     * add the `xebialabs` project, type `openshift.Project`  on `minishift.local` CI
-    * add the project into an `xebialabs-redhat`environment.
+    * add the project into an `xebialabs-redhat` environment.
     * deploy `Applications/Containers/RH/xldeploy/7.6.0-3` into `Environments/others/RedHat/xebialabs-redhat`
         * `xld --url http://localhost:4516 --username admin --password admin deploy --package-id Applications/Containers/RH/xldeploy/7.6.0-3 --environment-id Environments/others/RedHat/xebialabs-redhat`
 * Connect to the new deployed XLDeploy http://xldeploy-xebialabs.<IP-YOUR-CDK-CLUSTER>.nip.io and fill the license file

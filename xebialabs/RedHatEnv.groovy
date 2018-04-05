@@ -53,7 +53,8 @@ xld {
                 'inventory.initialDelaySeconds': '{{default.initialDelaySeconds}}',
                 'CATALOG_DB_USERNAME'          : 'tiger',
                 'inventory.timeoutSeconds'     : '30',
-                'catalog.timeoutSeconds'       : '30'
+                'catalog.timeoutSeconds'       : '30',
+                'env'                          : 'prod'
         ])
         dictionary('qa.configuration', [
                 'catalog.periodSeconds'        : '{{default.periodSeconds}}',
@@ -64,7 +65,8 @@ xld {
                 'inventory.initialDelaySeconds': '{{default.initialDelaySeconds}}',
                 'CATALOG_DB_USERNAME'          : 'tiger',
                 'inventory.timeoutSeconds'     : '20',
-                'catalog.timeoutSeconds'       : '20'
+                'catalog.timeoutSeconds'       : '20',
+                'env'                          : 'qa'
         ])
     }
 }
