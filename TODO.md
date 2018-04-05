@@ -5,17 +5,16 @@
     * set memory `minishift config set memory 8196`
     * set cpu `minishift config set cpus 2`
     * set disk size `minishift config set disk-size 40g`
-* start CDK using virtualbox driver ` minishift start --vm-driver=virtualbox`
+* start CDK using virtualbox driver `minishift start`
 
     
 ## Setup the sample app ##
 * `oc login -u developer` 
 * `oc new-project coolstore-dev`
 * `oc create -f openshift/coolstore-template.yaml`
-* instantiate template coolstore
-    * set the github url [setup project](images/setup-project.png) (TODO: Command line ??)
-* check all the builds are ok
-* check you can open the application : http://web-ui-coolstore-dev.192.168.64.6.nip.io/#/
+* instantiate template coolstore `oc new-app coolstore -p GIT_URI=https://github.com/bmoussaud/devops-workshop-labs.git`   
+* check all the builds are ok `oc status`
+* check you can open the application : http://web-ui-coolstore-dev.192.168.64.8.nip.io/#/
 
 
 ## Setup XLDeploy in the OpenShift cluster ##
@@ -82,6 +81,12 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
  
     
 ### XLDeploy ###
+
+* edit the 'xebialabs/RedHatEnv.groovy' file and set a value for the `openshiftToken` property 
+* apply the xebialabs/RedHatEnv.groovy file using the xld py cli `xld --url http://xldeploy-xebialabs.192.168.64.8.nip.io:80 --username admin --password admin apply /xebialabs/RedHatEnv.groovy`
+
+
+OR do it manually ...
 
 * Create the `openshift.Server`
     * id : Infrastructure/openshift.server
