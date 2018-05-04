@@ -42,8 +42,7 @@ OR
     * `https://github.com/xebialabs-community/xld-smoke-test-plugin/releases/download/v1.0.5/xld-smoke-test-plugin-1.0.5.xldp`
 * Install with all the default option (url will be http://localhost:4516)
 * Connect to the new deployed XLDeploy http://localhost:4516 and fill the license file
-
-
+* import XLDeploy application dar file `xebialabs/oc-client-3.7.1.dar`
 
 
 ## Setup XLRelease in the OpenShift cluster ##
@@ -92,15 +91,17 @@ OR
 * Define a `XLDeploy Server `shared configuration with the following parameter
     * title: XLDeploy Server
     * Authentication : basic
-    * url: http://xld-service.xebialabs.svc:4516
+    * url: http://xld-service.xebialabs.svc:4516 or http://localhost:4516 if ruuning outside the cluser
     * port: 2222
     * username: admin
     * password: admin   
 * create a `coolstore` folder
 * import the following templates
-    * don't forget to set the `Run automated tasks as user` 's credentials)
-    * edit the xldeploy task to set the `XLDeploy Server` 
+    * don't forget to set the `Run automated tasks as user` 's credentials
+    * edit the xldeploy task to set the `XLDeploy Server`
+    * edit the openshit tasks to set the oc client settings.
     * xebialabs/ComponentTemplate.xlr
+        * if xldeploy run outside the openshift cluster, edit the XLDeploy variable with http://192.168.64.1:4516
     * xebialabs/GlobalRelease.xlr
     * xebialabs/Master.xlr
  
@@ -136,8 +137,16 @@ OR do it manually ...
 * Create the PROD `udm.Environment` Environment with Infrastructure/openshift.server/coolstore-prod as member Environments/global.configuration as dictionaries
 
 
+## DEMO ##
 
- 
+## Release WebUI
+
+in XLR, start a release using ComponentTemplate template with the following input parameters
+    - release name: webui-1.0.2
+    - version : 1.0.2
+    - master: XXXX
+    - synchronizeWithMaster: false
+
     
 
 
