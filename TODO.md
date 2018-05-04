@@ -33,16 +33,41 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
         * `xld --url http://localhost:4516 --username admin --password admin deploy --package-id Applications/Containers/RH/xldeploy/7.6.0-3 --environment-id Environments/others/RedHat/xebialabs-redhat`
 * Connect to the new deployed XLDeploy http://xldeploy-xebialabs.<IP-YOUR-CDK-CLUSTER>.nip.io and fill the license file
 
+OR
+
+## Setup XLDeploy outside the OpenShift cluster ##
+* Download XLDeploy https://dist.xebialabs.com/xl-deploy-trial-server.zip
+* Install smoke-test plugin
+    * cd `plugins`
+    * `https://github.com/xebialabs-community/xld-smoke-test-plugin/releases/download/v1.0.5/xld-smoke-test-plugin-1.0.5.xldp`
+* Install with all the default option (url will be http://localhost:4516)
+* Connect to the new deployed XLDeploy http://localhost:4516 and fill the license file
+
+
+
+
 ## Setup XLRelease in the OpenShift cluster ##
 * in XLDorg
     * import XLDeploy application dar file `xebialabs/xlrelease-7.6.0-1.dar`
-    * import XLDeploy application dar file `/xebialabs/oc-client-3.7.1.dar`
+    * import XLDeploy application dar file `xebialabs/oc-client-3.7.1.dar`
     * deploy `Applications/Containers/RH/xlrelease/7.6.0-1` into `Environments/others/RedHat/xebialabs-redhat`
         * `xld --url http://localhost:4516 --username admin --password admin deploy --package-id Applications/Containers/RH/xlrelease/7.6.0-1 --environment-id Environments/others/RedHat/xebialabs-redhat`
     * deploy `Applications/Containers/RH/oc-client/3.7.1` into `Environments/others/RedHat/xebialabs-redhat`
         * `xld --url http://localhost:4516 --username admin --password admin deploy --package-id Applications/Containers/RH/oc-client/3.7.1 --environment-id Environments/others/RedHat/xebialabs-redhat`
 * Connect to the new deployed XLRelease http://xlrelease-xebialabs.<IP-YOUR-CDK-CLUSTER>.nip.io and fill the license file
-    
+
+OR
+
+* Download XLRelease https://dist.xebialabs.com/xl-release-trial.zip
+* Install zip
+* Override ext/ configuration: `cp xebialabs/xlr/openshift /PATH/TO/XLR/ext`
+* Install plugins in `cp XLR xebialabs/xlr/plugins/xlr-synchro-plugin-1.0.0.jar /PATH/TO/XLR/plugins/__local__`
+* Connect to the new deployed XLRelease http://localhost and fill the license file
+
+
+
+## Setup XLRelease outside the OpenShift cluster ##
+
 
 ## Setup the resources for the demo
 
@@ -82,8 +107,8 @@ We will use an existing xldeploy instance (called XLDorg) to setup a new XLDeplo
     
 ### XLDeploy ###
 
-* edit the 'xebialabs/RedHatEnv.groovy' file and set a value for the `openshiftToken` property 
-* apply the xebialabs/RedHatEnv.groovy file using the xld py cli `xld --url http://xldeploy-xebialabs.192.168.64.8.nip.io:80 --username admin --password admin apply /xebialabs/RedHatEnv.groovy`
+* edit the 'xebialabs/RedHatEnv.groovy' file and set a value for the `openshiftToken` property
+* apply the xebialabs/RedHatEnv.groovy file using the xld py cli `xld --url http://<XLD_URL> --username admin --password admin apply /xebialabs/RedHatEnv.groovy`
 
 
 OR do it manually ...
