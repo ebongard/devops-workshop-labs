@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<udm.DeploymentPackage version="@APP_VERSION@" application="catalog">
+    <deployables>
+        <openshift.ResourcesFile name="deploymentconfig-catalog" file="./work/deploymentconfig-catalog.yaml"/>
+        <openshift.ResourcesFile name="service-catalog" file="./work/service-catalog.yaml"/>
+
+        <openshift.ResourcesFile name="route-catalog" file="./work/route-catalog.yaml"/>
+
+        <k8s.ConfigMapSpec name="/config-catalog">
+            <propertyFiles>
+                <k8s.ConfigMapFileSpec name="/config-catalog/application.properties" file="work/application.properties">
+                    <scanPlaceholders>true</scanPlaceholders>
+                    <placeholders>
+                        <value>catalog.db.url</value>
+                        <value>catalog.db.password</value>
+                        <value>catalog.db.username</value>
+                    </placeholders>
+                </k8s.ConfigMapFileSpec>
+            </propertyFiles>
+
+        </k8s.ConfigMapSpec>
+
+        <k8s.ServiceSpec name="/service-catalog-postgresql">
+            <tags />
+            <serviceName>catalog-postgresql</serviceName>
+            <externalIPs />
+            <loadBalancerSourceRanges />
+            <selectors>
+                <entry key="component">catalog</entry>
+                <entry key="deployment">catalog-postgresql</entry>
+                <entry key="application">coolstore</entry>
+            </selectors>
+            <ports>
+                <k8s.ServicePortSpec name="/service-catalog-postgresql/postgresql">
+                    <portName>postgresql</portName>
+                    <port>5432</port>
+                    <targetPort>5432</targetPort>
+                </k8s.ServicePortSpec>
+            </ports>
+        </k8s.ServiceSpec>
+
+
+        <k8s.DeploymentSpec name="/deploymentconfig-catalog-postgresql">
+            <containers>
+                <k8s.ContainerSpec name="/deploymentconfig-catalog-postgresql/catalog-postgres">
+                    <image>postgresql:10</image>
+                    <ports>
+                        <k8s.ContainerPortSpec name="/deploymentconfig-catalog-postgresql/catalog-postgres/sql port">
+                            <containerPort>5432</containerPort>
+                        </k8s.ContainerPortSpec>
+                    </ports>
+                    <probes>
+                        <k8s.ReadinessExecProbeSpec name="/deploymentconfig-catalog-postgresql/catalog-postgres/readynessProbe">
+                            <initialDelaySeconds>5</initialDelaySeconds>
+                            <successThreshold>1</successThreshold>
+                            <periodSeconds>10</periodSeconds>
+                            <timeoutSeconds>1</timeoutSeconds>
+                            <failureThreshold>3</failureThreshold>
+                            <command>
+                                <value>/bin/sh</value>
+                                <value>-i</value>
+                                <value>-c</value>
+                                <value>psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c 'SELECT 1'</value>
+                            </command>
+                        </k8s.ReadinessExecProbeSpec>
+                    </probes>
+                    <volumeBindings>
+                        <k8s.MountedVolumeSpec name="/deploymentconfig-catalog-postgresql/catalog-postgres/catalog-postgresql-data">
+                            <mountPath>/var/lib/pgsql/data</mountPath>
+                        </k8s.MountedVolumeSpec>
+                    </volumeBindings>
+                    <envVars>
+                        <k8s.envVar.KeyValueSpec name="/deploymentconfig-catalog-postgresql/catalog-postgres/env">
+                            <properties>
+                                <entry key="POSTGRESQL_PASSWORD">{{catalog.db.password}}</entry>
+                                <entry key="POSTGRESQL_DATABASE">catalogdb</entry>
+                                <entry key="POSTGRESQL_USER">{{catalog.db.username}}</entry>
+                            </properties>
+                        </k8s.envVar.KeyValueSpec>
+                    </envVars>
+                </k8s.ContainerSpec>
+            </containers>
+            <volumes>
+                <k8s.VolumeSpec name="/deploymentconfig-catalog-postgresql/catalog-postgresql-data">
+                    <volumeType>emptyDir</volumeType>
+                </k8s.VolumeSpec>
+            </volumes>
+            <labels>
+                <entry key="component">catalog</entry>
+                <entry key="deployment">catalog-postgresql</entry>
+                <entry key="application">coolstore</entry>
+            </labels>
+            <deploymentName>catalog-postgresql</deploymentName>
+            <matchLabels>
+                <entry key="component">catalog</entry>
+                <entry key="deployment">catalog-postgresql</entry>
+                <entry key="application">coolstore</entry>
+            </matchLabels>
+            <matchExpressions />
+        </k8s.DeploymentSpec>
+
+    </deployables>
+</udm.DeploymentPackage>
+    

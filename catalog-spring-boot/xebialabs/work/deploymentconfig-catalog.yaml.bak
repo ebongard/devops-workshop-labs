@@ -34,8 +34,8 @@ spec:
           value: catalogdb
         - name: DB_SERVER
           value: catalog-mongodb
-        image: {{REGISTRY}}/coolstore-dev/catalog:1.21
-        imagePullPolicy: IfNotPresent
+        image: {{REGISTRY}}/coolstore-dev/catalog:@APP_VERSION@
+        imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 5
           httpGet:
@@ -46,10 +46,6 @@ spec:
           periodSeconds: {{catalog.periodSeconds}}
           successThreshold: 1
           timeoutSeconds: {{catalog.timeoutSeconds}}
-        volumeMounts:
-        - name: application-config
-          mountPath: "/deployments/config"
-          readOnly: true
         name: catalog
         ports:
         - containerPort: 8778
@@ -76,13 +72,6 @@ spec:
             cpu: 100m
             memory: 256Mi
         terminationMessagePath: /dev/termination-log
-      volumes:
-      - name: application-config
-        configMap:
-         name: config-catalog
-         items:
-         - key: application.properties
-           path: application.properties
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

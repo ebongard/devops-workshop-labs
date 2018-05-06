@@ -3,7 +3,7 @@
 * Download CDK https://developers.redhat.com/products/cdk/overview/
 * Install following the instructions : https://developers.redhat.com/products/cdk/hello-world/
     * set memory `minishift config set memory 8196`
-    * set cpu `minishift config set cpus 2`
+    * set cpu `minishift config set cpus 2` 
     * set disk size `minishift config set disk-size 40g`
 * start CDK using virtualbox driver `minishift start`
 
@@ -141,9 +141,11 @@ OR do it manually ...
 
 ## Release WebUI
 
-in XLR, start a release using ComponentTemplate template with the following input parameters
-    - release name: webui-1.0.2
-    - version : 1.0.2
+This topic shows how to release a single part of the application without synchronisation.
+
+in XLR, start a release using the 'ComponentTemplate' template with the following input parameters
+    - release name: webui-2.0.2
+    - version : 2.0.2
     - master: XXXX
     - synchronizeWithMaster: false
 
