@@ -148,9 +148,27 @@ in XLR, start a release using the 'ComponentTemplate' template with the followin
     - version : 2.0.2
     - master: XXXX
     - synchronizeWithMaster: false
+    
+Run the release till the end
 
+
+## Release Master
+
+in XLR, in XLR, start a release using the 'MASTER' template with the following input parameters 
+    - release name "Master-201805"
     
 
+in XLR, start a release using the 'ComponentTemplate' template with the following input parameters
+    - release name: webui-2.0.3
+    - version : 2.0.3
+    - master: Master-201805
+    - synchronizeWithMaster: True
+
+in XLR, start a release using the 'GlobalRelease' template with the following input parameters
+    - release name: GlobalRelease    
+    - master: Master-201805
+    - synchronizeWithMaster: True
+    
 
 
 
