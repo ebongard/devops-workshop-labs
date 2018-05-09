@@ -110,6 +110,7 @@ OR
 
 * edit the 'xebialabs/RedHatEnv.groovy' file and set a value for the `openshiftToken` property
 * apply the xebialabs/RedHatEnv.groovy file using the xld py cli `xld --url http://<XLD_URL> --username admin --password admin apply /xebialabs/RedHatEnv.groovy`
+* update in `Environments/RedHat/global.configuration` the `cluster.ip` value. 
 
 
 OR do it manually ...

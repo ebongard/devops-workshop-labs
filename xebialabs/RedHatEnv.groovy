@@ -3,6 +3,19 @@ xld {
     define(
             forInfrastructure: 'Infrastructure/RedHat'
     ) {
+        infrastructure('localhost-prod', 'overthere.LocalHost') {
+            os = com.xebialabs.overthere.OperatingSystemFamily.UNIX
+            infrastructure('test-prod', 'smoketest.Runner') {
+                host = ref('Infrastructure/RedHat/localhost-prod')
+            }
+        }
+        infrastructure('localhost-qa', 'overthere.LocalHost') {
+            os = com.xebialabs.overthere.OperatingSystemFamily.UNIX
+            infrastructure('test-qa', 'smoketest.Runner') {
+                host = ref('Infrastructure/RedHat/localhost-qa')
+            }
+        }
+
         infrastructure('openshift-cluster', 'openshift.Server') {
             serverUrl = 'https://kubernetes.default.svc:443'
             openshiftToken = '' //Encrypted value removed for export
@@ -16,12 +29,15 @@ xld {
                 projectName = 'coolstore-qa'
             }
         }
+
+
     }
     define(
             forEnvironments: 'Environments/RedHat'
     ) {
         environment('PROD') {
             members = [
+                    ref('Infrastructure/RedHat/localhost-prod/test-prod'),
                     ref('Infrastructure/RedHat/openshift-cluster/coolstore-prod')
             ]
             dictionaries = [
@@ -31,6 +47,7 @@ xld {
         }
         environment('QA') {
             members = [
+                    ref('Infrastructure/RedHat/localhost-qa/test-qa'),
                     ref('Infrastructure/RedHat/openshift-cluster/coolstore-qa')
             ]
             dictionaries = [
@@ -42,7 +59,8 @@ xld {
                 'REGISTRY'                   : 'docker-registry.default.svc:5000',
                 'default.periodSeconds'      : '30',
                 'default.timeoutSeconds'     : '20',
-                'default.initialDelaySeconds': '20'
+                'default.initialDelaySeconds': '20',
+                'cluster.ip'                 : '192.168.64.12'
         ])
         dictionary('prod.configuration', [
                 'catalog.periodSeconds'        : '{{default.periodSeconds}}',

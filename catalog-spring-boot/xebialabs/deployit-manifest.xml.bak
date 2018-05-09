@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="catalog">
     <deployables>
-       <openshift.ResourcesFile name="deploymentconfig-catalog" file="./work/deploymentconfig-catalog.yaml"/> <openshift.ResourcesFile name="service-catalog" file="./work/service-catalog.yaml"/> <openshift.ResourcesFile name="route-catalog" file="./work/route-catalog.yaml"/> <openshift.ResourcesFile name="service-catalog-mongodb" file="./work/service-catalog-mongodb.yaml"/> <openshift.ResourcesFile name="deploymentconfig-catalog-mongodb" file="./work/deploymentconfig-catalog-mongodb.yaml"/>       
-    </deployables></udm.DeploymentPackage>
+        <smoketest.HttpRequestTest name="/test catalog api">
+            <tags/>
+            <url>http://catalog-coolstore-{{env}}.{{cluster.ip}}.nip.io/api/products</url>
+            <expectedResponseText>Red Fedora</expectedResponseText>
+            <headers/>
+        </smoketest.HttpRequestTest>
+
+        <openshift.ResourcesFile name="deploymentconfig-catalog" file="./work/deploymentconfig-catalog.yaml"/>
+        <openshift.ResourcesFile name="service-catalog" file="./work/service-catalog.yaml"/>
+        <openshift.ResourcesFile name="route-catalog" file="./work/route-catalog.yaml"/>
+        <openshift.ResourcesFile name="service-catalog-mongodb" file="./work/service-catalog-mongodb.yaml"/>
+        <openshift.ResourcesFile name="deploymentconfig-catalog-mongodb"
+                                 file="./work/deploymentconfig-catalog-mongodb.yaml"/>
+    </deployables>
+</udm.DeploymentPackage>
     
