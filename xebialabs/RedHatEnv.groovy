@@ -60,7 +60,10 @@ xld {
                 'default.periodSeconds'      : '30',
                 'default.timeoutSeconds'     : '20',
                 'default.initialDelaySeconds': '20',
-                'cluster.ip'                 : '192.168.64.12'
+                'cluster.ip'                 : '192.168.64.12',
+                'smoketest.HttpRequestTest.start.delay' : '60',
+                'smoketest.HttpRequestTest.max.retries' : '60',
+                'smoketest.HttpRequestTest.retry.wait.interval': 7
         ])
         dictionary('prod.configuration', [
                 'catalog.periodSeconds'        : '{{default.periodSeconds}}',
