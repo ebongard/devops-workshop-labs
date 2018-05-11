@@ -2,9 +2,9 @@
 
 * Download CDK https://developers.redhat.com/products/cdk/overview/
 * Install following the instructions : https://developers.redhat.com/products/cdk/hello-world/
-    * set memory `minishift config set memory 8196`
-    * set cpu `minishift config set cpus 2` 
-    * set disk size `minishift config set disk-size 40g`
+    * set memory `minishift config set memory 12228`
+    * set cpu `minishift config set cpus 3` 
+    * set disk size `minishift config set disk-size 50g`
 * start CDK using virtualbox driver `minishift start`
 
     
