@@ -51,6 +51,7 @@ objects:
           kind: ImageStreamTag
           name: nodejs:4
           namespace: openshift
+        incremental: true
       type: Source
     triggers:
     - imageChange: {}
@@ -200,6 +201,7 @@ objects:
           kind: ImageStreamTag
           name: redhat-openjdk18-openshift:1.1
           namespace: openshift
+        incremental: true
       type: Source
     triggers:
     - type: ConfigChange
@@ -330,6 +332,7 @@ objects:
           kind: ImageStreamTag
           name: redhat-openjdk18-openshift:1.1
           namespace: openshift
+        incremental: true
       type: Source
     triggers:
     - type: ConfigChange
@@ -605,6 +608,7 @@ objects:
           kind: ImageStreamTag
           name: redhat-openjdk18-openshift:1.1
           namespace: openshift
+        incremental: true
       type: Source
     triggers:
     - type: ConfigChange
@@ -756,6 +760,7 @@ objects:
           kind: ImageStreamTag
           name: redhat-openjdk18-openshift:1.1
           namespace: openshift
+        incremental: true
       type: Source
     triggers:
     - type: ConfigChange
