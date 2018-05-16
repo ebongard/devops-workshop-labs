@@ -51,7 +51,7 @@ objects:
           kind: ImageStreamTag
           name: nodejs:4
           namespace: openshift
-        incremental: true
+        incremental: false
       type: Source
     triggers:
     - imageChange: {}
