@@ -15,8 +15,6 @@
         <openshift.ResourcesFile name="service-catalog" file="./work/service-catalog.yaml"/>
         <openshift.ResourcesFile name="route-catalog" file="./work/route-catalog.yaml"/>
         <openshift.ResourcesFile name="service-catalog-mongodb" file="./work/service-catalog-mongodb.yaml"/>
-        <openshift.ResourcesFile name="deploymentconfig-catalog-mongodb"
-                                 file="./work/deploymentconfig-catalog-mongodb.yaml"/>
     </deployables>
 </udm.DeploymentPackage>
     
