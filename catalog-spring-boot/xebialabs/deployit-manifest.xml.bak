@@ -18,7 +18,7 @@
         <k8s.ConfigMapSpec name="/config-catalog">
             <propertyFiles>
                 <k8s.ConfigMapFileSpec name="/config-catalog/application.properties"
-                                       file="application.properties"/>
+                                       file="work/application.properties"/>
             </propertyFiles>
             <propertyFolders/>
         </k8s.ConfigMapSpec>
