@@ -14,6 +14,18 @@
         <openshift.ResourcesFile name="deploymentconfig-catalog" file="./work/deploymentconfig-catalog.yaml"/>
         <openshift.ResourcesFile name="service-catalog" file="./work/service-catalog.yaml"/>
         <openshift.ResourcesFile name="route-catalog" file="./work/route-catalog.yaml"/>
+
+        <k8s.ConfigMapSpec name="/config-catalog">
+            <propertyFiles>
+                <k8s.ConfigMapFileSpec name="/config-catalog/application.properties"
+                                       file="application.properties"/>
+            </propertyFiles>
+            <propertyFolders/>
+        </k8s.ConfigMapSpec>
+
+        <openshift.ResourcesFile name="deploymentconfig-catalog-postgres" file="./work/deploymentconfig-catalog-postgresql.yaml.bck"/>
+        <openshift.ResourcesFile name="service-catalog" file="./work/service-catalog-postgresql.yaml"/>
+
     </deployables>
 </udm.DeploymentPackage>
     

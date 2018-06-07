@@ -20,6 +20,11 @@ spec:
         deploymentconfig: catalog
       name: catalog
     spec:
+      volumes:
+        - configMap:
+            name: config-catalog
+            defaultMode: 420
+        name: config-catalog-m5y28
       containers:
       - env:
         - name: JWS_ADMIN_USERNAME
@@ -64,6 +69,10 @@ spec:
           periodSeconds: {{catalog.periodSeconds}}
           successThreshold: 1
           timeoutSeconds: {{catalog.timeoutSeconds}}
+          volumeMounts:
+            - mountPath: /deployment/config
+              name: config-catalog-m5y28
+              readOnly: true
         resources:
           limits:
             cpu: 2

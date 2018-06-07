@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    application: coolstore
+    component: catalog
+  name: catalog-postgresql
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    deploymentconfig: catalog-postgresql
