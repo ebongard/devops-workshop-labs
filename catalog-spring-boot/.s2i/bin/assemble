@@ -19,6 +19,7 @@ if [ $rc -eq 0 ]; then
         chmod a+x /tmp/src/zip
 
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.yaml
+        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.json.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.json
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/deployit-manifest.xml.bak > /tmp/src/xebialabs/deployit-manifest.xml
 

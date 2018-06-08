@@ -11,7 +11,7 @@
             <retryWaitInterval>{{smoketest.HttpRequestTest.retry.wait.interval}}</retryWaitInterval>
         </smoketest.HttpRequestTest>
 
-        <openshift.ResourcesFile name="deploymentconfig-catalog" file="./work/deploymentconfig-catalog.yaml"/>
+        <openshift.ResourcesFile name="deploymentconfig-catalog" file="./work/deploymentconfig-catalog.json"/>
         <openshift.ResourcesFile name="service-catalog" file="./work/service-catalog.yaml"/>
         <openshift.ResourcesFile name="route-catalog" file="./work/route-catalog.yaml"/>
 
