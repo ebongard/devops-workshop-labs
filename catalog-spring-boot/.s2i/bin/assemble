@@ -28,6 +28,8 @@ if [ $rc -eq 0 ]; then
         unzip -l /tmp/src/xebialabs.dar
         echo "Push package to XLDEPLOY"
         curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@/tmp/src/xebialabs.dar
+        exit_code_curl = $?
+        exit $exit_code_curl
     fi
 else
     echo "After failed assembling"
