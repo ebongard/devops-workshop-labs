@@ -23,7 +23,7 @@
             <propertyFolders/>
         </k8s.ConfigMapSpec>
 
-        <openshift.ResourcesFile name="deploymentconfig-catalog-postgres" file="./work/deploymentconfig-catalog-postgresql.yaml.bck"/>
+        <openshift.ResourcesFile name="deploymentconfig-catalog-postgres" file="./work/deploymentconfig-catalog-postgresql.yaml"/>
         <openshift.ResourcesFile name="service-catalog-postgres" file="./work/service-catalog-postgresql.yaml"/>
 
     </deployables>
