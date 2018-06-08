@@ -19,9 +19,11 @@ if [ $rc -eq 0 ]; then
         chmod a+x /tmp/src/zip
 
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.yaml
-        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.json.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.json
+        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog.json.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog.json
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/deployit-manifest.xml.bak > /tmp/src/xebialabs/deployit-manifest.xml
+
+        cat /tmp/src/xebialabs/deployit-manifest.xml
 
         echo "Creating DAR file for XLDEPLOY"
         cd /tmp/src/xebialabs; /tmp/src/zip -r ../xebialabs.dar ./*; cd ..;
@@ -29,7 +31,7 @@ if [ $rc -eq 0 ]; then
         echo "Push package to XLDEPLOY"
         curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@/tmp/src/xebialabs.dar
         exit_code_curl = $?
-        exit $exit_code_curl
+        exit $?
     fi
 else
     echo "After failed assembling"
