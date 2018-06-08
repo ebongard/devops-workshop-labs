@@ -18,9 +18,8 @@ if [ $rc -eq 0 ]; then
         curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o /tmp/src/zip
         chmod a+x /tmp/src/zip
 
-        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog-postgresql.yaml.bck > /tmp/src/xebialabs/work/deploymentconfig-catalog-postgresql.yaml
+        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/catalog-spring-boot/xebialabs/work/deploymentconfig-catalog-postgresql.json.bak > /tmp/src/xebialabs/catalog-spring-boot/xebialabs/work/deploymentconfig-catalog-postgresql.json
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog.json.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog.json
-        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/deployit-manifest.xml.bak > /tmp/src/xebialabs/deployit-manifest.xml
 
         cat /tmp/src/xebialabs/deployit-manifest.xml

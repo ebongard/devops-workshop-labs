@@ -1,0 +1,130 @@
+{
+  "kind": "DeploymentConfig",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "catalog-postgresql",
+    "generation": 1,
+    "creationTimestamp": null,
+    "labels": {
+      "application": "coolstore",
+      "component": "catalog"
+    }
+  },
+  "spec": {
+    "strategy": {
+      "type": "Recreate",
+      "recreateParams": {
+        "timeoutSeconds": 600
+      },
+      "resources": {},
+      "activeDeadlineSeconds": 21600
+    },
+    "triggers": [
+      {
+        "type": "ImageChange",
+        "imageChangeParams": {
+          "automatic": true,
+          "containerNames": [
+            "catalog-postgresql"
+          ],
+          "from": {
+            "kind": "ImageStreamTag",
+            "namespace": "openshift",
+            "name": "postgresql:latest"
+          }
+        }
+      },
+      {
+        "type": "ConfigChange"
+      }
+    ],
+    "replicas": 1,
+    "test": false,
+    "selector": {
+      "deploymentconfig": "catalog-postgresql"
+    },
+    "template": {
+      "metadata": {
+        "name": "catalog-postgresql",
+        "creationTimestamp": null,
+        "labels": {
+          "application": "coolstore",
+          "component": "catalog",
+          "deploymentconfig": "catalog-postgresql"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "catalog-postgresql",
+            "image": "{{REGISTRY}}/openshift/postgresql:latest",
+            "ports": [
+              {
+                "containerPort": 5432,
+                "protocol": "TCP"
+              }
+            ],
+            "env": [
+              {
+                "name": "POSTGRESQL_USER",
+                "value": "{{catalog.db.username}}"
+              },
+              {
+                "name": "POSTGRESQL_PASSWORD",
+                "value": "{{catalog.db.password}}"
+              },
+              {
+                "name": "POSTGRESQL_DATABASE",
+                "value": "catalogdb"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "50m",
+                "memory": "128Mi"
+              }
+            },
+            "livenessProbe": {
+              "tcpSocket": {
+                "port": 5432
+              },
+              "initialDelaySeconds": 30,
+              "timeoutSeconds": 1,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "failureThreshold": 3
+            },
+            "readinessProbe": {
+              "exec": {
+                "command": [
+                  "/bin/sh",
+                  "-i",
+                  "-c",
+                  "psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c 'SELECT 1'"
+                ]
+              },
+              "initialDelaySeconds": 5,
+              "timeoutSeconds": 1,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "failureThreshold": 3
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "imagePullPolicy": "Always"
+          }
+        ],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "securityContext": {},
+        "schedulerName": "default-scheduler"
+      }
+    }
+  }
+
+}
