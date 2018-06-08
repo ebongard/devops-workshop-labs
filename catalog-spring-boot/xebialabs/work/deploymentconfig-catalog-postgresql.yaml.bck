@@ -27,37 +27,37 @@ spec:
           value: {{catalog.db.password}}
         - name: POSTGRESQL_DATABASE
           value: catalogdb
-        image: {{REGISTRY}}/openshift/postgresql:latest
-        imagePullPolicy: Always
-        livenessProbe:
-          initialDelaySeconds: 30
-          tcpSocket:
-            port: 5432
-          timeoutSeconds: 1
-        name: catalog-postgresql
-        ports:
-        - containerPort: 5432
-          protocol: TCP
-        readinessProbe:
-          exec:
-            command:
-            - /bin/sh
-            - -i
-            - -c
-            - psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c
-              'SELECT 1'
-          initialDelaySeconds: 5
-          timeoutSeconds: 1
-        resources:
-          limits:
-            cpu: 500m
-            memory: 512Mi
-          requests:
-            cpu: 50m
-            memory: 128Mi
-        volumeMounts:
-        - mountPath: /var/lib/pgsql/data
-          name: catalog-postgresql-data
+      image: {{REGISTRY}}/openshift/postgresql:latest
+      imagePullPolicy: Always
+      livenessProbe:
+        initialDelaySeconds: 30
+        tcpSocket:
+          port: 5432
+      timeoutSeconds: 1
+      name: catalog-postgresql
+      ports:
+      - containerPort: 5432
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /bin/sh
+          - -i
+          - -c
+          - psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c
+            'SELECT 1'
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 50m
+          memory: 128Mi
+      volumeMounts:
+      - mountPath: /var/lib/pgsql/data
+        name: catalog-postgresql-data
       terminationGracePeriodSeconds: 60
       volumes:
       - emptyDir: {}
