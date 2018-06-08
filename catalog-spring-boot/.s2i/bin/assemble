@@ -12,13 +12,13 @@ echo "------ END BUILD INFO ------------"
 rc=$?
 
 if [ $rc -eq 0 ]; then
-    echo "After successful assembling"
+    echo "-- After successful assembling"
     if [ -n "$APP_VER" ]; then
         echo "Before assembling"
         curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o /tmp/src/zip
         chmod a+x /tmp/src/zip
 
-        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog-mongodb.yaml
+        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog-postgresql.yaml.bck > /tmp/src/xebialabs/work/deploymentconfig-catalog-postgresql.yaml
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog.json.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog.json
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-catalog.yaml
         sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/deployit-manifest.xml.bak > /tmp/src/xebialabs/deployit-manifest.xml
