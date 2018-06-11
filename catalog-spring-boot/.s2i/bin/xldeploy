@@ -7,9 +7,7 @@ echo "* APP_VER       $APP_VER"
 echo "* XLD           $XLDEPLOY_URL"
 echo "* PACKAGE_DIR   $PACKAGE_DIR"
 
-echo "--- JAR ???"
-jar -version
-echo "/--- JAR ???"
+#TODO: replace zip by jar
 
 ZIP="zip"
 which zip
