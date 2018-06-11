@@ -5,6 +5,7 @@ echo $BUILD
 echo $APP_VER
 echo $XLDEPLOY_URL
 pwd
+env
 echo "------ END BUILD INFO ------------"
 
 /usr/local/s2i/assemble
@@ -15,7 +16,9 @@ if [ $rc -eq 0 ]; then
         echo "-- Call /usr/local/s2i/xldeploy --"
         find /usr/local/s2i
         echo "GO"
-        /usr/local/s2i/xldeploy $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
+        find /tmp/src/.s2i
+        chmod +x /tmp/src/.s2i/bin/xldeploy
+        /tmp/src/.s2i/bin/xldeploy $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
     fi
 else
     echo "After failed assembling $rc"
