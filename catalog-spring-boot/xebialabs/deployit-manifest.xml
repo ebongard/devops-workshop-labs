@@ -11,7 +11,7 @@
             <retryWaitInterval>{{smoketest.HttpRequestTest.retry.wait.interval}}</retryWaitInterval>
         </smoketest.HttpRequestTest>
 
-        <openshift.ResourcesFile name="deploymentconfig-catalog.json" file="./package/deploymentconfig-catalog.json"/>
+        <openshift.ResourcesFile name="deploymentconfig-catalog" file="./package/deploymentconfig-catalog.yaml"/>
         <openshift.ResourcesFile name="service-catalog" file="package/service-catalog.yaml"/>
         <openshift.ResourcesFile name="route-catalog" file="package/route-catalog.yaml"/>
 
@@ -30,8 +30,8 @@
             <propertyFolders/>
         </k8s.ConfigMapSpec>
 
-        <openshift.ResourcesFile name="deploymentconfig-catalog-postgres.json"
-                                 file="package/deploymentconfig-catalog-postgresql.json"/>
+        <openshift.ResourcesFile name="deploymentconfig-catalog-postgres"
+                                 file="package/deploymentconfig-catalog-postgresql.yaml"/>
         <openshift.ResourcesFile name="service-catalog-postgres" file="./package/service-catalog-postgresql.yaml"/>
 
     </deployables>

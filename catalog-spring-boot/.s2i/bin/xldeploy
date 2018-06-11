@@ -18,7 +18,7 @@ cp -r $PACKAGE_DIR/* $WORK_DIR
 #echo "--dump $WORK_DIR --"
 #find $WORK_DIR
 echo "-- replace @APP_VERSION@ --> $APP_VER"
-sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/package/deploymentconfig-catalog.json
+sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/package/deploymentconfig-catalog.yaml
 sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/deployit-manifest.xml
 
 cat $WORK_DIR/deployit-manifest.xml
