@@ -6,6 +6,7 @@ echo "Generate the XLDeploy deployment package"
 echo "* APP_VER       $APP_VER"
 echo "* XLD           $XLDEPLOY_URL"
 echo "* PACKAGE_DIR   $PACKAGE_DIR"
+echo "--dump $PACKAGE_DIR --"
 find $PACKAGE_DIR
 
 
@@ -13,6 +14,9 @@ WORK_DIR="$(mktemp -d)"
 
 echo "* WORK_DIR     $WORK_DIR"
 cp -r $PACKAGE_DIR $WORK_DIR
+
+echo "--dump $WORK_DIR --"
+find $WORK_DIR
 
 sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/package/deploymentconfig-catalog.json
 sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/deployit-manifest.xml
