@@ -13,7 +13,7 @@ rc=$?
 if [ $rc -eq 0 ]; then
     echo "-- After successful assembling"
     if [ -n "$APP_VER" ]; then
-        /usr/local/s2i/assemble $APP_VER $XLDEPLOY_URL /tmp/src
+        /usr/local/s2i/assemble $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
     fi
 else
     echo "After failed assembling"

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<udm.DeploymentPackage version="@APP_VERSION@" application="catalog">
+    <deployables>
+        <smoketest.HttpRequestTest name="/test catalog api">
+            <tags/>
+            <url>http://catalog-coolstore-{{env}}.{{cluster.ip}}.nip.io/api/products</url>
+            <expectedResponseText>Red Fedora</expectedResponseText>
+            <headers/>
+            <startDelay>{{smoketest.HttpRequestTest.start.delay}}</startDelay>
+            <maxRetries>{{smoketest.HttpRequestTest.max.retries}}</maxRetries>
+            <retryWaitInterval>{{smoketest.HttpRequestTest.retry.wait.interval}}</retryWaitInterval>
+        </smoketest.HttpRequestTest>
+
+        <openshift.ResourcesFile name="deploymentconfig-catalog.json" file="./package/deploymentconfig-catalog.json"/>
+        <openshift.ResourcesFile name="service-catalog" file="package/service-catalog.yaml"/>
+        <openshift.ResourcesFile name="route-catalog" file="package/route-catalog.yaml"/>
+
+        <!-- https://www.nicolaferraro.me/2016/10/23/hot-reconfiguration-of-microservices-on-kubernetes/ -->
+        <k8s.ConfigMapSpec name="/config-catalog">
+            <propertyFiles>
+                <k8s.ConfigMapFileSpec name="/config-catalog/application.properties"
+                                       file="package/application.properties">
+                    <placeholders>
+                        <value>catalog.db.url</value>
+                        <value>catalog.db.password</value>
+                        <value>catalog.db.username</value>
+                    </placeholders>
+                </k8s.ConfigMapFileSpec>
+            </propertyFiles>
+            <propertyFolders/>
+        </k8s.ConfigMapSpec>
+
+        <openshift.ResourcesFile name="deploymentconfig-catalog-postgres.json"
+                                 file="package/deploymentconfig-catalog-postgresql.json"/>
+        <openshift.ResourcesFile name="service-catalog-postgres" file="./package/service-catalog-postgresql.yaml"/>
+
+    </deployables>
+</udm.DeploymentPackage>
+    

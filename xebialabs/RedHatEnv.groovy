@@ -77,7 +77,8 @@ xld {
                 'CATALOG_DB_USERNAME'          : '{{catalog.db.username}}',
                 'inventory.timeoutSeconds'     : '30',
                 'catalog.timeoutSeconds'       : '30',
-                'env'                          : 'prod'
+                'env'                          : 'prod',
+                'catalog.db.url'               : 'jdbc:postgresql://catalog-postgresql:5432/catalogdb'
         ])
         dictionary('qa.configuration', [
                 'catalog.periodSeconds'        : '{{default.periodSeconds}}',
@@ -91,7 +92,8 @@ xld {
                 'CATALOG_DB_USERNAME'          : '{{catalog.db.username}}',
                 'inventory.timeoutSeconds'     : '20',
                 'catalog.timeoutSeconds'       : '20',
-                'env'                          : 'qa'
+                'env'                          : 'qa',
+                'catalog.db.url'               : 'jdbc:postgresql://catalog-postgresql:5432/catalogdb'
         ])
     }
 }

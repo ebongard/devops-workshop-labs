@@ -1,10 +1,11 @@
 #!/bin/bash
 APP_VER=$1
 XLDEPLOY_URL=$2
-WORK_DIR=$3
-echo "APP_VER  $APP_VER"
-echo "XLD      $XLDEPLOY_URL"
-echo "WORK DIR $WORK_DIR"
+PACKAGE_DIR=$3
+echo "Generate the XLDeploy deployment package"
+echo "* APP_VER       $APP_VER"
+echo "* XLD           $XLDEPLOY_URL"
+echo "* PACKAGE_DIR   $PACKAGE_DIR"
 
 which zip
 rc=$?
@@ -14,15 +15,23 @@ if [ $rc -ne 0 ]; then
     chmod a+x /usrl/local/bin/zip
 fi
 
-sed "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/xebialabs/work/deploymentconfig-catalog-postgresql.json.bak > $WORK_DIR/xebialabs/work/deploymentconfig-catalog-postgresql.json
-sed "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/xebialabs/work/deploymentconfig-catalog.json.bak > $WORK_DIR/xebialabs/work/deploymentconfig-catalog.json
-sed "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/xebialabs/deployit-manifest.xml.bak > $WORK_DIR/xebialabs/deployit-manifest.xml
+WORK_DIR="$(mktemp -d)"
 
-cat $WORK_DIR/xebialabs/deployit-manifest.xml
+echo "* WORK_DIR     $WORK_DIR"
+cp -r $PACKAGE_DIR $WORK_DIR
+
+sed -i '' "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/package/deploymentconfig-catalog.json
+sed -i '' "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/deployit-manifest.xml
+
+cat $WORK_DIR/deployit-manifest.xml
 
 echo "Creating DAR file for XLDEPLOY"
-cd $WORK_DIR/xebialabs; zip -r ../xebialabs.dar ./*; cd ..;
-unzip -l $WORK_DIR/xebialabs.dar
+DAR_FILE="$(mktemp -d)/xebialabs.dar"
+echo "* DAR_FILE     $DAR_FILE"
+cd $WORK_DIR
+zip -r $DAR_FILE *
+unzip -l $DAR_FILE
+
 echo "Push package to XLDEPLOY"
-curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@$WORK_DIR/xebialabs.dar
+curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@$DAR_FILE
 exit $?
