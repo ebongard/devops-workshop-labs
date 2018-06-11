@@ -140,6 +140,13 @@ OR do it manually ...
 
 ## DEMO ##
 
+## XLDeploy
+
+When the catalog image has been deployed in -dev, the database is h2, good for dev
+When the catalog image has been deployed in -qa, the database is postgres, provisioned. 
+The configuration is managed by the configmap that contains the application.properties file.
+ 
+ 
 ## Release WebUI
 
 This topic shows how to release a single part of the application without synchronisation.
