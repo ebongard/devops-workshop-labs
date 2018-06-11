@@ -13,10 +13,7 @@ rc=$?
 
 if [ $rc -eq 0 ]; then
     if [ -n "$APP_VER" ]; then
-        echo "-- Call /usr/local/s2i/xldeploy --"
-        find /usr/local/s2i
-        echo "GO"
-        find /tmp/src/.s2i
+        echo "-- Call .s2i/xldeploy --"
         chmod +x /tmp/src/.s2i/bin/xldeploy
         /tmp/src/.s2i/bin/xldeploy $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
     fi
