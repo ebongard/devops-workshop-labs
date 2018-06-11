@@ -7,12 +7,18 @@ echo "* APP_VER       $APP_VER"
 echo "* XLD           $XLDEPLOY_URL"
 echo "* PACKAGE_DIR   $PACKAGE_DIR"
 
+echo "--- JAR ???"
+jar -version
+echo "/--- JAR ???"
+
+ZIP="zip"
 which zip
 rc=$?
 if [ $rc -ne 0 ]; then
     echo "missing zip,download it..."
-    curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o /usrl/local/bin/zip
-    chmod a+x /usrl/local/bin/zip
+    curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o /tmp/zip
+    ZIP="/tmp/zip"
+    chmod a+x $ZIP
 fi
 
 WORK_DIR="$(mktemp -d)"
@@ -29,7 +35,7 @@ echo "Creating DAR file for XLDEPLOY"
 DAR_FILE="$(mktemp -d)/xebialabs.dar"
 echo "* DAR_FILE     $DAR_FILE"
 cd $WORK_DIR
-zip -r $DAR_FILE *
+$ZIP -r $DAR_FILE *
 unzip -l $DAR_FILE
 
 echo "Push package to XLDEPLOY"
