@@ -13,7 +13,7 @@ find $PACKAGE_DIR
 WORK_DIR="$(mktemp -d)"
 
 echo "* WORK_DIR     $WORK_DIR"
-cp -r $PACKAGE_DIR $WORK_DIR
+cp -r $PACKAGE_DIR/* $WORK_DIR
 
 echo "--dump $WORK_DIR --"
 find $WORK_DIR
