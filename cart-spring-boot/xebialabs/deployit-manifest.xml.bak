@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<udm.DeploymentPackage version="@APP_VERSION@" application="cart">
-    <deployables>
-        <openshift.ResourcesFile name="deploymentconfig-cart" file="./work/deploymentconfig-cart.yaml"/>
-        <openshift.ResourcesFile name="service-cart" file="./work/service-cart.yaml"/>
-        <openshift.ResourcesFile name="route-cart" file="./work/route-cart.yaml"/>
-    </deployables>
-</udm.DeploymentPackage>
-    
