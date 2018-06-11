@@ -1,0 +1,35 @@
+#!/bin/bash
+APP_VER=$1
+XLDEPLOY_URL=$2
+PACKAGE_DIR=$3
+echo "Generate the XLDeploy deployment package"
+echo "* APP_VER       $APP_VER"
+echo "* XLD           $XLDEPLOY_URL"
+echo "* PACKAGE_DIR   $PACKAGE_DIR"
+#echo "--dump $PACKAGE_DIR --"
+#find $PACKAGE_DIR
+
+
+WORK_DIR="$(mktemp -d)"
+echo "* WORK_DIR     $WORK_DIR"
+echo "--------------------------------------------------------"
+cp -r $PACKAGE_DIR/* $WORK_DIR
+
+#echo "--dump $WORK_DIR --"
+#find $WORK_DIR
+echo "-- replace @APP_VERSION@ --> $APP_VER"
+sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/package/deploymentconfig-web-ui.yaml
+sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/deployit-manifest.xml
+
+cat $WORK_DIR/deployit-manifest.xml
+
+echo "-- Creating DAR file for XLDEPLOY"
+DAR_FILE="/tmp/xebialabs.dar"
+echo "* DAR_FILE     $DAR_FILE"
+jar cvf $DAR_FILE -C $WORK_DIR .
+jar tvf $DAR_FILE
+
+echo "--------------------------------------------------------"
+echo "-- Push package to XLDEPLOY"
+curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@$DAR_FILE
+exit $?

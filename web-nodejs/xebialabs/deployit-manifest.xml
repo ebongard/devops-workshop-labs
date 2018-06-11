@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="web-ui">
     <deployables>
-        <openshift.ResourcesFile name="deploymentconfig-web-ui" file="./work/deploymentconfig-web-ui.yaml"/>
-        <openshift.ResourcesFile name="service-web-ui" file="./work/service-web-ui.yaml"/>
-        <openshift.ResourcesFile name="route-web-ui" file="./work/route-web-ui.yaml"/>
+        <openshift.ResourcesFile name="deploymentconfig-web-ui" file="./package/deploymentconfig-web-ui.yaml"/>
+        <openshift.ResourcesFile name="service-web-ui" file="./package/service-web-ui.yaml"/>
+        <openshift.ResourcesFile name="route-web-ui" file="./package/route-web-ui.yaml"/>
         <smoketest.HttpRequestTest name="/test web ui">
             <tags/>
             <url>http://web-ui-coolstore-{{env}}.{{cluster.ip}}.nip.io/#/</url>

@@ -4,29 +4,21 @@ echo "------ START BUILD INFO ------- "
 echo $BUILD
 echo $APP_VER
 echo $XLDEPLOY_URL
+pwd
+env
 echo "------ END BUILD INFO ------------"
 
-/usr/libexec/s2i/assemble
+/usr/local/s2i/assemble
 rc=$?
 
 if [ $rc -eq 0 ]; then
-    echo "After successful assembling"
     if [ -n "$APP_VER" ]; then
-        echo "Before assembling"
-        curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o zip
-        chmod a+x zip
-
-        sed "s/@APP_VERSION@/$APP_VER/g" xebialabs/work/deploymentconfig-web-ui.yaml.bak > xebialabs/work/deploymentconfig-web-ui.yaml
-        sed "s/@APP_VERSION@/$APP_VER/g" xebialabs/deployit-manifest.xml.bak > xebialabs/deployit-manifest.xml
-
-        echo "Creating DAR file for XLDEPLOY"
-        cd xebialabs; ../zip -r ../xebialabs.dar ./*; cd ..;
-        unzip -l xebialabs.dar
-        echo "Push package to XLDEPLOY"
-        curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@./xebialabs.dar
+        echo "-- Call .s2i/xldeploy --"
+        chmod +x /tmp/src/.s2i/bin/xldeploy
+        /tmp/src/.s2i/bin/xldeploy $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
     fi
 else
-    echo "After failed assembling"
+    echo "After failed assembling $rc"
 fi
 
 exit $rc
