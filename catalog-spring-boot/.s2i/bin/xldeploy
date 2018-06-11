@@ -6,18 +6,8 @@ echo "Generate the XLDeploy deployment package"
 echo "* APP_VER       $APP_VER"
 echo "* XLD           $XLDEPLOY_URL"
 echo "* PACKAGE_DIR   $PACKAGE_DIR"
+find $PACKAGE_DIR
 
-#TODO: replace zip by jar
-
-ZIP="zip"
-which zip
-rc=$?
-if [ $rc -ne 0 ]; then
-    echo "missing zip,download it..."
-    curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o /tmp/zip
-    ZIP="/tmp/zip"
-    chmod a+x $ZIP
-fi
 
 WORK_DIR="$(mktemp -d)"
 
@@ -30,11 +20,10 @@ sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/deployit-manifest.xml
 cat $WORK_DIR/deployit-manifest.xml
 
 echo "Creating DAR file for XLDEPLOY"
-DAR_FILE="$(mktemp -d)/xebialabs.dar"
+DAR_FILE="/tmp/xebialabs.dar"
 echo "* DAR_FILE     $DAR_FILE"
-cd $WORK_DIR
-$ZIP -r $DAR_FILE *
-unzip -l $DAR_FILE
+jar cvf $DAR_FILE -C $WORK_DIR .
+jar tvf $DAR_FILE
 
 echo "Push package to XLDEPLOY"
 curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@$DAR_FILE
