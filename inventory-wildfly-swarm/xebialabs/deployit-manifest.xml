@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="inventory">
     <deployables>
-        <openshift.ResourcesFile name="deploymentconfig-inventory" file="./work/deploymentconfig-inventory.yaml"/>
-        <openshift.ResourcesFile name="service-inventory" file="./work/service-inventory.yaml"/>
-        <openshift.ResourcesFile name="route-inventory" file="./work/route-inventory.yaml"/>
+        <openshift.ResourcesFile name="deploymentconfig-inventory" file="./package/deploymentconfig-inventory.yaml"/>
+        <openshift.ResourcesFile name="service-inventory" file="./package/service-inventory.yaml"/>
+        <openshift.ResourcesFile name="route-inventory" file="./package/route-inventory.yaml"/>
         <openshift.ResourcesFile name="deploymentconfig-inventory-postgresql"
-                                 file="./work/deploymentconfig-inventory-postgresql.yaml"/>
-        <openshift.ResourcesFile name="service-inventory-postgresql" file="./work/service-inventory-postgresql.yaml"/>
+                                 file="./package/deploymentconfig-inventory-postgresql.yaml"/>
+        <openshift.ResourcesFile name="service-inventory-postgresql" file="./package/service-inventory-postgresql.yaml"/>
         <smoketest.HttpRequestTest name="/test inventory api">
             <tags/>
             <url>http://inventory-coolstore-{{env}}.{{cluster.ip}}.nip.io/api/inventory/329299</url>

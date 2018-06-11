@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="coolstore-gw">
     <deployables>
-        <openshift.ResourcesFile name="deploymentconfig-coolstore-gw" file="./work/deploymentconfig-coolstore-gw.yaml"/>
-        <openshift.ResourcesFile name="service-gw" file="./work/service-gw.yaml"/>
-        <openshift.ResourcesFile name="route-gw" file="./work/route-gw.yaml"/>
+        <openshift.ResourcesFile name="deploymentconfig-coolstore-gw" file="./package/deploymentconfig-coolstore-gw.yaml"/>
+        <openshift.ResourcesFile name="service-gw" file="./package/service-gw.yaml"/>
+        <openshift.ResourcesFile name="route-gw" file="./package/route-gw.yaml"/>
         <smoketest.HttpRequestTest name="/test gateway">
             <tags/>
             <url>http://gw-coolstore-{{env}}.{{cluster.ip}}.nip.io/health</url>
