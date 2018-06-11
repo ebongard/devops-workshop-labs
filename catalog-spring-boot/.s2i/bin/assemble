@@ -11,12 +11,14 @@ echo "------ END BUILD INFO ------------"
 rc=$?
 
 if [ $rc -eq 0 ]; then
-    echo "-- After successful assembling"
     if [ -n "$APP_VER" ]; then
-        /usr/local/s2i/assemble $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
+        echo "-- Call /usr/local/s2i/xldeploy --"
+        find /usr/local/s2i
+        echo "GO"
+        /usr/local/s2i/xldeploy $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
     fi
 else
-    echo "After failed assembling"
+    echo "After failed assembling $rc"
 fi
 
 exit $rc
