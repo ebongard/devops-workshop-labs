@@ -57,13 +57,4 @@ spec:
               memory: 128Mi
         terminationGracePeriodSeconds: 60
   triggers:
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - inventory-postgresql
-      from:
-        kind: ImageStreamTag
-        name: postgresql:latest
-        namespace: openshift
-    type: ImageChange
   - type: ConfigChange

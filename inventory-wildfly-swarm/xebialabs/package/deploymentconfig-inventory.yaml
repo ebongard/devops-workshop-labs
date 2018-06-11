@@ -97,13 +97,4 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 75
   triggers:
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - inventory
-      from:
-        kind: ImageStreamTag
-        name: inventory:@APP_VERSION@
-        namespace: coolstore-dev
-    type: ImageChange
   - type: ConfigChange
