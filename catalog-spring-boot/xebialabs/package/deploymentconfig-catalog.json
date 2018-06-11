@@ -83,7 +83,7 @@
               },
               {
                 "name": "DB_SERVER",
-                "value": "catalog-mongodb"
+                "value": "catalog-postgres"
               }
             ],
             "resources": {
@@ -100,7 +100,7 @@
               {
                 "name": "config-catalog-m5y28",
                 "readOnly": true,
-                "mountPath": "/deployment/config"
+                "mountPath": "/deployments/config"
               }
             ],
             "livenessProbe": {
