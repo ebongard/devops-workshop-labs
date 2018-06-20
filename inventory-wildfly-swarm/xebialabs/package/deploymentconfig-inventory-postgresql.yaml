@@ -7,9 +7,14 @@ metadata:
   name: inventory-postgresql
 spec:
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     deploymentconfig: inventory-postgresql
   strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
     type: Recreate
   template:
     metadata:
@@ -20,33 +25,40 @@ spec:
       name: inventory-postgresql
     spec:
       containers:
-      - env:
-        - name: POSTGRESQL_USER
-          value: user
-        - name: POSTGRESQL_PASSWORD
-          value: password
-        - name: POSTGRESQL_DATABASE
-          value: inventorydb
+        - env:
+            - name: POSTGRESQL_USER
+              value: userD0V
+            - name: POSTGRESQL_PASSWORD
+              value: TxDd3rJQ
+            - name: POSTGRESQL_DATABASE
+              value: inventorydb
           image: {{REGISTRY}}/openshift/postgresql:latest
           imagePullPolicy: Always
           livenessProbe:
+            failureThreshold: 3
             initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
             tcpSocket:
               port: 5432
             timeoutSeconds: 1
           name: inventory-postgresql
           ports:
-          - containerPort: 5432
-            protocol: TCP
+            - containerPort: 5432
+              protocol: TCP
           readinessProbe:
             exec:
               command:
-              - /bin/sh
-              - -i
-              - -c
-              - psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c
-                'SELECT 1'
+                - /bin/sh
+                - '-i'
+                - '-c'
+                - >-
+                  psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d
+                  $POSTGRESQL_DATABASE -c 'SELECT 1'
+            failureThreshold: 3
             initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
             timeoutSeconds: 1
           resources:
             limits:
@@ -55,6 +67,20 @@ spec:
             requests:
               cpu: 50m
               memory: 128Mi
-        terminationGracePeriodSeconds: 60
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /var/lib/pgsql/data
+              name: inventory-postgresql-data
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - emptyDir: {}
+          name: inventory-postgresql-data
+  test: false
   triggers:
-  - type: ConfigChange
+    - type: ConfigChange
+
