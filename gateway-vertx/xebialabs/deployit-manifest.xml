@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="coolstore-gw">
     <deployables>
-        <openshift.ResourcesFile name="deploymentconfig-coolstore-gw" file="./package/deploymentconfig-coolstore-gw.yaml"/>
+        <openshift.ResourcesFile name="deploymentconfig-coolstore-gw"
+                                 file="./package/deploymentconfig-coolstore-gw.yaml"/>
         <openshift.ResourcesFile name="service-gw" file="./package/service-gw.yaml"/>
         <openshift.ResourcesFile name="route-gw" file="./package/route-gw.yaml"/>
         <smoketest.HttpRequestTest name="/test gateway">
@@ -13,7 +14,6 @@
             <maxRetries>{{smoketest.HttpRequestTest.max.retries}}</maxRetries>
             <retryWaitInterval>{{smoketest.HttpRequestTest.retry.wait.interval}}</retryWaitInterval>
         </smoketest.HttpRequestTest>
-
     </deployables>
 </udm.DeploymentPackage>
     

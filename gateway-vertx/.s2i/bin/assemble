@@ -5,30 +5,20 @@ echo $BUILD
 echo $APP_VER
 echo $XLDEPLOY_URL
 pwd
+env
 echo "------ END BUILD INFO ------------"
-#whereis openshift-sti-build
 
 /usr/local/s2i/assemble
 rc=$?
 
 if [ $rc -eq 0 ]; then
-    echo "After successful assembling"
     if [ -n "$APP_VER" ]; then
-        echo "Before assembling"
-        curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o /tmp/src/zip
-        chmod a+x /tmp/src/zip
-
-        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/work/deploymentconfig-coolstore-gw.yaml.bak > /tmp/src/xebialabs/work/deploymentconfig-coolstore-gw.yaml
-        sed "s/@APP_VERSION@/$APP_VER/g" /tmp/src/xebialabs/deployit-manifest.xml.bak > /tmp/src/xebialabs/deployit-manifest.xml
-
-        echo "Creating DAR file for XLDEPLOY"
-        cd /tmp/src/xebialabs; /tmp/src/zip -r ../xebialabs.dar ./*; cd ..;
-        unzip -l /tmp/src/xebialabs.dar
-        echo "Push package to XLDEPLOY"
-        curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@/tmp/src/xebialabs.dar
+        echo "-- Call .s2i/xldeploy --"
+        chmod +x /tmp/src/.s2i/bin/xldeploy
+        /tmp/src/.s2i/bin/xldeploy $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
     fi
 else
-    echo "After failed assembling"
+    echo "After failed assembling $rc"
 fi
 
 exit $rc
