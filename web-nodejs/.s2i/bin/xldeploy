@@ -15,8 +15,8 @@ echo "* WORK_DIR     $WORK_DIR"
 echo "--------------------------------------------------------"
 cp -r $PACKAGE_DIR/* $WORK_DIR
 
-#echo "--dump $WORK_DIR --"
-#find $WORK_DIR
+echo "--dump $WORK_DIR --"
+find $WORK_DIR
 echo "-- replace @APP_VERSION@ --> $APP_VER"
 sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/package/deploymentconfig-web-ui.yaml
 sed --in-place "s/@APP_VERSION@/$APP_VER/g" $WORK_DIR/deployit-manifest.xml
@@ -26,9 +26,11 @@ cat $WORK_DIR/deployit-manifest.xml
 echo "-- Creating DAR file for XLDEPLOY"
 DAR_FILE="/tmp/xebialabs.dar"
 echo "* DAR_FILE     $DAR_FILE"
-jar cvf $DAR_FILE -C $WORK_DIR .
-jar tvf $DAR_FILE
-
+cd $WORK_DIR
+curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o zip
+chmod a+x zip
+zip  $DAR_FILE *
+    
 echo "--------------------------------------------------------"
 echo "-- Push package to XLDEPLOY"
 curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@$DAR_FILE
