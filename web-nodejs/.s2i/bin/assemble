@@ -14,8 +14,8 @@ rc=$?
 if [ $rc -eq 0 ]; then
     if [ -n "$APP_VER" ]; then
         echo "-- Call .s2i/xldeploy --"
-        chmod +x /tmp/src/.s2i/bin/xldeploy
-        /tmp/src/.s2i/bin/xldeploy $APP_VER $XLDEPLOY_URL /tmp/src/xebialabs
+        chmod +x .s2i/bin/xldeploy
+        .s2i/bin/xldeploy $APP_VER $XLDEPLOY_URL ./xebialabs
     fi
 else
     echo "After failed assembling $rc"
