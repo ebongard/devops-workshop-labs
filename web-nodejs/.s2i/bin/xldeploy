@@ -29,7 +29,7 @@ echo "* DAR_FILE     $DAR_FILE"
 cd $WORK_DIR
 curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o zip
 chmod a+x zip
-./zip  $DAR_FILE *
+./zip -r $DAR_FILE *
 
 echo "--------------------------------------------------------"
 echo "-- Push package to XLDEPLOY"
