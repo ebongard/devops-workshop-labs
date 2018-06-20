@@ -8,7 +8,7 @@ pwd
 env
 echo "------ END BUILD INFO ------------"
 
-/usr/local/s2i/assemble
+/usr/libexec/s2i/assemble
 rc=$?
 
 if [ $rc -eq 0 ]; then
