@@ -29,8 +29,8 @@ echo "* DAR_FILE     $DAR_FILE"
 cd $WORK_DIR
 curl https://github.com/jchraibi/tools/blob/master/zip?raw=true -L -o zip
 chmod a+x zip
-zip  $DAR_FILE *
-    
+./zip  $DAR_FILE *
+
 echo "--------------------------------------------------------"
 echo "-- Push package to XLDEPLOY"
 curl -uadmin:admin -X POST -H "content-type:multipart/form-data" $XLDEPLOY_URL/deployit/package/upload/xebialabs.dar -F fileData=@$DAR_FILE
