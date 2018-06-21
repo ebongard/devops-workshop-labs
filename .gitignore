@@ -25,3 +25,7 @@ target/
 *.iml
 tmp/
 .idea/
+
+bower_components/
+node_modules/
+package-lock.json
