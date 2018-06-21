@@ -132,6 +132,9 @@ OR do it manually ...
     * catalog.timeoutSeconds 30
     * catalog.periodSeconds 30
     * env qa
+    * ENVIRONMENT QA
+    * ENVIRONMENT_COLOR green
+    
     
 
 * Create the QA `udm.Environment` with Infrastructure/openshift.server/coolstore-qa as member and Environments/global.configuration as dictionaries

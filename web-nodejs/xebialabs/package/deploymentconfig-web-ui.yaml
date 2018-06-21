@@ -31,6 +31,10 @@ spec:
           value: web-ui:8080
         - name: COMPONENT_VERSION
           value: v@APP_VERSION@
+        - name: ENVIRONMENT
+          value: {{ENVIRONMENT}}
+        - name: ENVIRONMENT_COLOR
+          value: {{ENVIRONMENT_COLOR}}
         image: {{REGISTRY}}/coolstore-dev/web-ui:@APP_VERSION@
         imagePullPolicy: Always
         livenessProbe:

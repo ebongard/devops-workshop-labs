@@ -63,7 +63,8 @@ xld {
                 'cluster.ip'                 : '192.168.64.12',
                 'smoketest.HttpRequestTest.start.delay' : '60',
                 'smoketest.HttpRequestTest.max.retries' : '60',
-                'smoketest.HttpRequestTest.retry.wait.interval': '7'
+                'smoketest.HttpRequestTest.retry.wait.interval': '7',
+                'ENVIRONMENT_COLOR' : 'green'
         ])
         dictionary('prod.configuration', [
                 'catalog.periodSeconds'        : '{{default.periodSeconds}}',
@@ -79,6 +80,8 @@ xld {
                 'catalog.timeoutSeconds'       : '30',
                 'env'                          : 'prod',
                 'catalog.db.url'               : 'jdbc:postgresql://catalog-postgresql:5432/catalogdb'
+                'ENVIRONMENT_COLOR'            : 'blue',
+                'ENVIRONMENT'                  : 'PRODUCTION'
         ])
         dictionary('qa.configuration', [
                 'catalog.periodSeconds'        : '{{default.periodSeconds}}',
@@ -93,7 +96,9 @@ xld {
                 'inventory.timeoutSeconds'     : '20',
                 'catalog.timeoutSeconds'       : '20',
                 'env'                          : 'qa',
-                'catalog.db.url'               : 'jdbc:postgresql://catalog-postgresql:5432/catalogdb'
+                'catalog.db.url'               : 'jdbc:postgresql://catalog-postgresql:5432/catalogdb',
+                'ENVIRONMENT_COLOR'            : 'green',
+                'ENVIRONMENT'                  : 'QA'
         ])
     }
 }
