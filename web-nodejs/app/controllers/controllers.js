@@ -114,12 +114,15 @@ angular.module('app')
             }])
 
     .controller("HeaderController",
-        ['$scope', '$location', '$http', 'Notifications', 'cart', 'Auth',
-            function ($scope, $location, $http, Notifications, cart, $auth) {
+        ['$scope', '$location', '$http', 'Notifications', 'cart','COOLSTORE_CONFIG', 'Auth',
+            function ($scope, $location, $http, Notifications, cart,COOLSTORE_CONFIG, $auth) {
                 $scope.userInfo = $auth.userInfo;
 
                 $scope.cartTotal = 0.0;
                 $scope.itemCount = 0;
+                $scope.environment = COOLSTORE_CONFIG.ENVIRONMENT;
+                $scope.environment_color = COOLSTORE_CONFIG.ENVIRONMENT_COLOR;
+                $scope.environment_position = COOLSTORE_CONFIG.ENVIRONMENT_POSITION;
 
                 $scope.isLoggedIn = function () {
                     return $auth.loggedIn;

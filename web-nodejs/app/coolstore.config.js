@@ -1,7 +1,10 @@
 var config = {
     API_ENDPOINT: 'gateway-' + process.env.OPENSHIFT_BUILD_NAMESPACE,
     SECURE_API_ENDPOINT: 'secure-gateway-' + process.env.SECURE_COOLSTORE_GW_SERVICE,
-    SSO_ENABLED: process.env.SSO_URL ? true : false
+    SSO_ENABLED: process.env.SSO_URL ? true : false,
+    ENVIRONMENT: process.env.ENVIRONMENT,
+    ENVIRONMENT_COLOR: process.env.ENVIRONMENT_COLOR || 'green',
+    ENVIRONMENT_POSITION: process.env.ENVIRONMENT_POSITION || 'bottom-right '
 };
 
 if (process.env.COOLSTORE_GW_ENDPOINT != null) {
