@@ -49,13 +49,4 @@ spec:
             cpu: 100m
             memory: 512Mi
   triggers:
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - coolstore-gw
-      from:
-        kind: ImageStreamTag
-        name: coolstore-gw:@APP_VERSION@
-        namespace: coolstore-dev
-    type: ImageChange
   - type: ConfigChange
