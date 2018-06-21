@@ -60,15 +60,15 @@ public class GatewayVerticle extends AbstractVerticle {
             Single<WebClient> catalogDiscoveryRequest = HttpEndpoint.rxGetWebClient(discovery,
                     rec -> rec.getName().equals("catalog"))
                     .onErrorReturn(t -> WebClient.create(vertx, new WebClientOptions()
-                            .setDefaultHost(System.getProperty("catalog.api.host", "localhost"))
-                            .setDefaultPort(Integer.getInteger("catalog.api.port", 9000))));
+                            .setDefaultHost(System.getProperty("catalog.api.host", "catalog"))
+                            .setDefaultPort(Integer.getInteger("catalog.api.port", 8080))));
 
             // Inventory lookup
             Single<WebClient> inventoryDiscoveryRequest = HttpEndpoint.rxGetWebClient(discovery,
                     rec -> rec.getName().equals("inventory"))
                     .onErrorReturn(t -> WebClient.create(vertx, new WebClientOptions()
-                            .setDefaultHost(System.getProperty("inventory.api.host", "localhost"))
-                            .setDefaultPort(Integer.getInteger("inventory.api.port", 9001))));
+                            .setDefaultHost(System.getProperty("inventory.api.host", "inventory"))
+                            .setDefaultPort(Integer.getInteger("inventory.api.port", 8080))));
 
             // Cart lookup
             Single<WebClient> cartDiscoveryRequest;
@@ -79,8 +79,8 @@ public class GatewayVerticle extends AbstractVerticle {
                 cartDiscoveryRequest = HttpEndpoint.rxGetWebClient(discovery,
                         rec -> rec.getName().equals("cart"))
                         .onErrorReturn(t -> WebClient.create(vertx, new WebClientOptions()
-                                .setDefaultHost(System.getProperty("cart.api.host", "localhost"))
-                                .setDefaultPort(Integer.getInteger("cart.api.port", 9002))));
+                                .setDefaultHost(System.getProperty("cart.api.host", "cart"))
+                                .setDefaultPort(Integer.getInteger("cart.api.port", 8080))));
             }
 
             // Zip all 3 requests
