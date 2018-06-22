@@ -79,7 +79,7 @@ xld {
                 'inventory.timeoutSeconds'     : '30',
                 'catalog.timeoutSeconds'       : '30',
                 'env'                          : 'prod',
-                'catalog.db.url'               : 'jdbc:postgresql://catalog-postgresql:5432/catalogdb'
+                'catalog.db.url'               : 'jdbc:postgresql://catalog-postgresql:5432/catalogdb',
                 'ENVIRONMENT_COLOR'            : 'blue',
                 'ENVIRONMENT'                  : 'PRODUCTION'
         ])
