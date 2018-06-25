@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="inventory">
+    <orchestrator>
+        <value>sequential-by-deployed</value>
+    </orchestrator>
+
     <deployables>
         <openshift.ResourcesFile name="deploymentconfig-inventory" file="./package/deploymentconfig-inventory.yaml"/>
         <openshift.ResourcesFile name="service-inventory" file="./package/service-inventory.yaml"/>
         <openshift.ResourcesFile name="route-inventory" file="./package/route-inventory.yaml"/>
-        <openshift.ResourcesFile name="deploymentconfig-inventory-postgresql"
+        <openshift.ResourcesFile name="a-deploymentconfig-inventory-postgresql"
                                  file="./package/deploymentconfig-inventory-postgresql.yaml"/>
-        <openshift.ResourcesFile name="service-inventory-postgresql" file="./package/service-inventory-postgresql.yaml"/>
+        <openshift.ResourcesFile name="service-inventory-postgresql"
+                                 file="./package/service-inventory-postgresql.yaml"/>
         <smoketest.HttpRequestTest name="/test inventory api">
             <tags/>
             <url>http://inventory-coolstore-{{env}}.{{cluster.ip}}.nip.io/api/inventory/329299</url>
