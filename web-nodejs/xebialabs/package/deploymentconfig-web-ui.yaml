@@ -30,7 +30,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: COOLSTORE_GW_SERVICE
+        - name: COOLSTORE_GW_ENDPOINT
           value: gw-coolstore-{{env}}
         - name: HOSTNAME_HTTP
           value: web-ui:8080
