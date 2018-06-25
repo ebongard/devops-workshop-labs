@@ -81,14 +81,5 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
   triggers:
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - web-ui
-      from:
-        kind: ImageStreamTag
-        name: web-ui:latest
-        namespace: coolstore-dev
-    type: ImageChange
   - type: ConfigChange
 
