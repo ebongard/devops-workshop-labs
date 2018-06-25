@@ -1,3 +1,4 @@
+INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('329297', 'Periodic Table Devops Tools', 'Periodic Table Devops Tools V3 by XebiaLabs', 14.99);
 INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('329299', 'Red Fedora', 'Official Red Hat Fedora by XebiaLabs', 34.99);
 INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('329199', 'Forge Laptop Sticker', 'JBoss Community Forge Project Sticker', 8.50);
 INSERT INTO PRODUCT (item_id, name, description, price) VALUES ('165613', 'Solid Performance Polo', 'Moisture-wicking, antimicrobial 100% polyester design wicks for life of garment. No-curl, rib-knit collar...', 17.80)
