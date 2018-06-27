@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="@APP_VERSION@" application="catalog">
+    <orchestrator>
+        <value>sequential-by-deployed</value>
+    </orchestrator>
     <deployables>
         <smoketest.HttpRequestTest name="/test catalog api">
             <tags/>
