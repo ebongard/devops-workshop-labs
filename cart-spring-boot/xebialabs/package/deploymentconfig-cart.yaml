@@ -7,6 +7,7 @@ metadata:
   name: cart
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     deploymentconfig: cart
   strategy:

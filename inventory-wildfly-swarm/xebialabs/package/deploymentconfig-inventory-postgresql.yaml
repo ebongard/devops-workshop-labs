@@ -7,7 +7,7 @@ metadata:
   name: inventory-postgresql
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 2
   selector:
     deploymentconfig: inventory-postgresql
   strategy:

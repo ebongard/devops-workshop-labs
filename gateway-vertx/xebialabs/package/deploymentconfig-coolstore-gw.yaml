@@ -7,6 +7,7 @@ metadata:
   name: coolstore-gw
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     deploymentconfig: coolstore-gw
   strategy:
