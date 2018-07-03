@@ -14,6 +14,15 @@
             <maxRetries>{{smoketest.HttpRequestTest.max.retries}}</maxRetries>
             <retryWaitInterval>{{smoketest.HttpRequestTest.retry.wait.interval}}</retryWaitInterval>
         </smoketest.HttpRequestTest>
+        <smoketest.HttpRequestTest name="/test products">
+            <tags/>
+            <url>http://gw-coolstore-{{env}}.{{cluster.ip}}.nip.io/api/products</url>
+            <expectedResponseText>DevOps</expectedResponseText>
+            <headers/>
+            <startDelay>{{smoketest.HttpRequestTest.start.delay}}</startDelay>
+            <maxRetries>{{smoketest.HttpRequestTest.max.retries}}</maxRetries>
+            <retryWaitInterval>{{smoketest.HttpRequestTest.retry.wait.interval}}</retryWaitInterval>
+        </smoketest.HttpRequestTest>
     </deployables>
 </udm.DeploymentPackage>
     
