@@ -6,7 +6,6 @@
         <openshift.ResourcesFile name="service-gw" file="./package/service-gw.yaml"/>
         <openshift.ResourcesFile name="route-gw" file="./package/route-gw.yaml"/>
         <smoketest.HttpRequestTest name="/test gateway">
-            <tags/>
             <url>http://gw-coolstore-{{env}}.{{cluster.ip}}.nip.io/health</url>
             <expectedResponseText>UP</expectedResponseText>
             <headers/>
@@ -15,7 +14,6 @@
             <retryWaitInterval>{{smoketest.HttpRequestTest.retry.wait.interval}}</retryWaitInterval>
         </smoketest.HttpRequestTest>
         <smoketest.HttpRequestTest name="/test products">
-            <tags/>
             <url>http://gw-coolstore-{{env}}.{{cluster.ip}}.nip.io/api/products</url>
             <expectedResponseText>DevOps</expectedResponseText>
             <headers/>
