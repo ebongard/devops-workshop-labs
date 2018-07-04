@@ -181,6 +181,9 @@ in XLR, start a release using the 'GlobalRelease' template with the following in
     - synchronizeWithMaster: True
     
 
+TIP: Clean up RC/Deployment
+oc adm prune deployments --keep-complete=1 --namespace=coolstore-prod --confirm
+https://stackoverflow.com/questions/39833531/delete-deployment-replication-controllers-openshift-cli
 
 
 
