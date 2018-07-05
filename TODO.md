@@ -60,7 +60,8 @@ OR
 * Download XLRelease https://dist.xebialabs.com/xl-release-trial.zip
 * Install zip
 * Override ext/ configuration: `cp xebialabs/xlr/openshift /PATH/TO/XLR/ext`
-* Install plugins in `cp XLR xebialabs/xlr/plugins/xlr-synchro-plugin-1.0.0.jar /PATH/TO/XLR/plugins/__local__`
+* Install synchro plugins in `cp XLR xebialabs/xlr/plugins/xlr-synchro-plugin-1.0.0.jar /PATH/TO/XLR/plugins/__local__`
+* Install xlr-xld community plugins in `cp XLR xebialabs/xlr/plugins/xlr-xldeploy-plugin-3.3.1.jar /PATH/TO/XLR/plugins/__local__`
 * Connect to the new deployed XLRelease http://localhost and fill the license file
 
 

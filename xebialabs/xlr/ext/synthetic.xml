@@ -1,13 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <type-modification type="openshift.startBuild" >
-    <property name="project" category="input"  />
-    <property name="scriptLocation" required="false" hidden="true" default="openshift/rh_start_build.py" />
-    <property name="buildNumber" category="output" required="false" description="Build number of the triggered job"/>
-    <property name="buildStatus" category="output" required="false" description="Build status of the triggered job"/>
-    <property name="host" kind="ci" referenced-type="host.Unix" required="false" hidden="true" category="input" description="OC Client machine."/>
-  </type-modification>
-  <type-modification type="openshift.imageTag">
-    <property name="host" kind="ci" referenced-type="host.Unix" required="false" hidden="true" category="input" description="OC Client machine."/>
-  </type-modification>
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd"
+           xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <type-modification type="openshift.startBuild">
+        <property name="project" category="input"/>
+        <property name="scriptLocation" required="false" hidden="true" default="openshift/rh_start_build.py"/>
+        <property name="buildNumber" category="output" required="false"
+                  description="Build number of the triggered job"/>
+        <property name="buildStatus" category="output" required="false"
+                  description="Build status of the triggered job"/>
+        <property name="host" kind="ci" referenced-type="host.Unix" required="false" hidden="true" category="input"
+                  description="OC Client machine."/>
+    </type-modification>
+    <type-modification type="openshift.imageTag">
+        <property name="host" kind="ci" referenced-type="host.Unix" required="false" hidden="true" category="input"
+                  description="OC Client machine."/>
+    </type-modification>
+
+    <type type="xld.IncrementVersion" extends="xlrelease.PythonScript">
+        <property name="scriptLocation" default="xld/increment_version.py" hidden="true"/>
+        <property name="current_version" label='Current Version' category="input"/>
+        <property name="next_version" label='Next Version' category="output"/>
+        <property name="taskColor" hidden="true" default="#009CDB"/>
+    </type>
 </synthetic>
