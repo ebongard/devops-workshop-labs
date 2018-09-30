@@ -199,7 +199,7 @@ objects:
           value: ${MAVEN_MIRROR_URL}
         from:
           kind: ImageStreamTag
-          name: redhat-openjdk18-openshift:1.1
+          name: redhat-openjdk18-openshift:latest
           namespace: openshift
         incremental: true
       type: Source
@@ -330,7 +330,7 @@ objects:
           value: ${MAVEN_MIRROR_URL}
         from:
           kind: ImageStreamTag
-          name: redhat-openjdk18-openshift:1.1
+          name: redhat-openjdk18-openshift:latest
           namespace: openshift
         incremental: true
       type: Source
@@ -606,7 +606,7 @@ objects:
           value: ${MAVEN_MIRROR_URL}
         from:
           kind: ImageStreamTag
-          name: redhat-openjdk18-openshift:1.1
+          name: redhat-openjdk18-openshift:latest
           namespace: openshift
         incremental: true
       type: Source
@@ -758,7 +758,7 @@ objects:
           value: ${MAVEN_MIRROR_URL}
         from:
           kind: ImageStreamTag
-          name: redhat-openjdk18-openshift:1.1
+          name: redhat-openjdk18-openshift:latest
           namespace: openshift
         incremental: true
       type: Source
